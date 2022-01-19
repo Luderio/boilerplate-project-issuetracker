@@ -42,7 +42,7 @@ module.exports = function (app) {
       (error, issueRecords) => {
         if (error) return console.log(error);
 
-        let logs = issueRecords.project;
+        let logs = issueRecords.__v;
         let logResult = logs.map(log => {
 
           let id = log.id;
