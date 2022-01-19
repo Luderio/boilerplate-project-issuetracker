@@ -42,8 +42,8 @@ module.exports = function (app) {
       const newIssue = new IssueLogs({
         "issueTitle": issue_title,
         "issueText": issue_text,
-        "createdOn": new Date(),
-        "updatedOn": new Date(),
+        "createdOn": new Date().toISOString(),
+        "updatedOn": new Date().toISOString(),
         "createdBy": created_by,
         "assignedTo": assigned_to,
         "statusText": status_text,
