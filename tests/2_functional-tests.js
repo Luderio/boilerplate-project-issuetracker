@@ -59,6 +59,30 @@ suite('Functional Tests', function() {
                 });
             });
 
+            //Test 3: Create an issue with missing required fields: POST request to /api/issues/{project}
+            test('Create an issue with missing required fields', function(done) {
+                chai.request(server)
+                .post('/api/issues/apitest')
+                .send({
+                    "issue_title": '',
+                    "issue_text": '',
+                    "created_by": '',
+                    "assigned_to": 'Ian Rusiana',
+                    "status_text": 'In Progress'
+                })
+                .end(function(error, response) {
+                    assert.equal(response.status, 200);
+                    assert.equal(response.body.issue_title, '');
+                    assert.equal(response.body.issue_text, '');
+                    assert.equal(response.body.created_by, '');
+                    assert.equal(response.body.assigned_to, 'Ian Rusiana');
+                    assert.equal(response.body.status_text, 'In Progress');
+                    id1 = response.body._id;
+                    console.log('id 1 has been set as: ' + id1);
+                    done();
+                });
+            });
+
 
 
         });
