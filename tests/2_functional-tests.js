@@ -35,6 +35,28 @@ suite('Functional Tests', function() {
                 });
             });
 
+            //Test 2: Create an issue with only required fields: POST request to /api/issues/{project}
+            test('Create an issue with only required fields', function(done) {
+                chai.request(server)
+                .post('/api/issues/apitest')
+                .send({
+                    "issue_title": 'Test Issue',
+                    "issue_text": 'Functional tests - Every field filled in',
+                    "created_by": 'Luderio Sanchez'
+                })
+                .end(function(error, response) {
+                    assert.equal(response.status, 200);
+                    assert.equal(response.body.issue_title, 'Test Issue');
+                    assert.equal(response.body.issue_text, 'Functional tests - Every field filled in');
+                    assert.equal(response.body.created_by, 'Luderio Sanchez');
+                    assert.equal(response.body.assigned_to, '');
+                    assert.equal(response.body.status_text, '');
+                    id1 = response.body._id;
+                    console.log('id 1 has been set as: ' + id1);
+                    done();
+                });
+            });
+
 
 
         });
