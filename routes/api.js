@@ -65,11 +65,14 @@ module.exports = function (app) {
           "created_on": issueData.createdOn,
           "updated_on": issueData.updatedOn
         });
+
+        if (issue_title == "" || issue_text == "" || created_by == "") {
+          res.json({"error": "required field(s) missing"});
+        }
+
       });
 
-      if (issue_title == "" || issue_text == "" || created_by == "") {
-        res.json({"error": "required field(s) missing"});
-      }
+      
 
     })
     
