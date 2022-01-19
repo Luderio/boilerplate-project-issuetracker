@@ -42,7 +42,9 @@ suite('Functional Tests', function() {
                 .send({
                     "issue_title": 'Test Issue',
                     "issue_text": 'Functional tests - Every field filled in',
-                    "created_by": 'Luderio Sanchez'
+                    "created_by": 'Luderio Sanchez',
+                    "assigned_to": '',
+                    "status_text": ''
                 })
                 .end(function(error, response) {
                     assert.equal(response.status, 200);
