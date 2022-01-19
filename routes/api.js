@@ -29,10 +29,62 @@ module.exports = function (app) {
   
     .get(function (req, res){
       let project = req.params.project;
-      IssueLogs.find({"project": project}, (error, issueRecords) => {
+      let id = req.query.id;
+      let issue_title = req.query.issue_title;
+      let issue_text = req.query.issue_text;
+      let created_by = req.query.created_by;
+      let assigned_to = req.query.assigned_to;
+      let status_text = req.query.status_text;
+
+
+      //to dispplay all issue records on '/api/issues//api/issues/apitest/
+      IssueLogs.find({"project": project},
+      (error, issueRecords) => {
         if (error) return console.log(error);
-        res.json(issueRecords);
+
+        let logs = issueRecords.project;
+        let logResult = logs.map(log => {
+
+          let id = log.id;
+          let issue_title = log.issue_title;
+          let issue_text = log.issue_text;
+          let created_on = log.created_on;
+          let updated_on = log.updated_on;
+          let created_by = log.created_by;
+          let assigned_to = log.assigned_to;
+          let open = log.open;
+          let status_text = log.status_text;
+
+          let issueLogs = {
+            "_id": id,
+            "issue_title": issue_title,
+            "issue_text": issue_text,
+            "created_on": created_on,
+            "updated_on": updated_on,
+            "created_by": created_by,
+            "assigned_to": assigned_to,
+            "open": open,
+            "status_text": status_text
+          };
+
+          return issueLogs;
+        });
+
+        let responseObject = {};
+
+        responseObject = logResult;
+        
+        
+        res.json(responseObject);
       });
+
+
+
+
+      });
+
+
+
     })
     
     .post(function (req, res){
