@@ -80,11 +80,6 @@ module.exports = function (app) {
 
 
 
-
-      });
-
-
-
     })
     
     .post(function (req, res){
