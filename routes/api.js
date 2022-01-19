@@ -31,7 +31,7 @@ module.exports = function (app) {
       let project = req.params.project;
       IssueLogs.find({"project": project}, (error, issueRecords) => {
         if (error) return console.log(error);
-        res.send([issueRecords]);
+        res.send([issueRecords]);//
       });
     })
     
