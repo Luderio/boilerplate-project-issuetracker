@@ -27,7 +27,7 @@ suite('Functional Tests', function() {
                     assert.equal(response.body.issue_title, 'Test Issue');
                     assert.equal(response.body.issue_text, 'Functional tests - Every field filled in');
                     assert.equal(response.body.created_by, 'Luderio Sanchez');
-                    assert.equal(response.body.assigned_to, 'Luderio Sanchez');
+                    assert.equal(response.body.assigned_to, 'Ian Rusiana');
                     assert.equal(response.body.status_text, 'In Progress');
                     id1 = response.body._id;
                     console.log('id 1 has been set as: ' + id1);
