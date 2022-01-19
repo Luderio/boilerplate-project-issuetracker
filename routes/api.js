@@ -67,6 +67,10 @@ module.exports = function (app) {
         });
       });
 
+      if (issue_title == "" || issue_text == "" || created_by == "") {
+        res.json({"error": "required field(s) missing"});
+      }
+
     })
     
     .put(function (req, res){
