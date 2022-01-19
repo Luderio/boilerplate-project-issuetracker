@@ -11,8 +11,8 @@ module.exports = function (app) {
 
   //SCHEMA
   const issueTrackerSchema = mongoose.Schema({
-    "issueTitle": {"type": String, "required": true},
-    "issueText": {"type": String, "required": true},
+    "issueTitle": String,
+    "issueText": String,
     "createdOn": String,
     "updatedOn": String,
     "createdBy": String,
