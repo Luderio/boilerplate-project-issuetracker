@@ -46,7 +46,7 @@ module.exports = function (app) {
 
         responseObject = issueRecords;
         
-        if (id || issue_title || issue_text || created_by || assigned_to || status_text) {
+        if (id == true || issue_title == true || issue_text == true || created_by == true || assigned_to == true || status_text == true) {
           
           let issueLogSearch = issueRecords.filter(logs => {
             return logs == id || logs == issue_title || logs == issue_text || logs == created_by || logs == assigned_to || logs == status_text;
