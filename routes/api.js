@@ -11,14 +11,15 @@ module.exports = function (app) {
 
   //SCHEMA
   const issueTrackerSchema = mongoose.Schema({
-    "issueTitle": String,
-    "issueText": String,
-    "createdOn": String,
-    "updatedOn": String,
-    "createdBy": String,
-    "assignedTo": String,
-    "statusText": String,
-    "open": {"type": Boolean, "default": true}
+    "issue_title": String,
+    "issue_text": String,
+    "created_on": String,
+    "updated_on": String,
+    "created_by": String,
+    "assigned_to": String,
+    "status_text": String,
+    "open": {"type": Boolean, "default": true},
+    "project": String
   });
 
   //MODEL
@@ -40,14 +41,15 @@ module.exports = function (app) {
       let status_text = req.body.status_text;
 
       const newIssue = new IssueLogs({
-        "issueTitle": issue_title,
-        "issueText": issue_text,
-        "createdOn": new Date().toISOString(),
-        "updatedOn": new Date().toISOString(),
-        "createdBy": created_by,
-        "assignedTo": assigned_to,
-        "statusText": status_text,
-        "open": true
+        "issue_title": issue_title,
+        "issue_text": issue_text,
+        "created_on": new Date().toISOString(),
+        "updated_on": new Date().toISOString(),
+        "created_by": created_by,
+        "assigned_to": assigned_to || '',
+        "status_text": status_text || '',
+        "open": true,
+        "project": project
       });
 
       newIssue.save((error, issueData) => {
