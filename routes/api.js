@@ -34,11 +34,15 @@ module.exports = function (app) {
     
     .post(function (req, res){
       let project = req.params.project;
-      let issue_title = req.body.issue_title;
-      let issue_text = req.body.issue_text;
-      let created_by = req.body.created_by;
+      let issue_title = req.body.issue_title || res.json({"error": "required field(s) missing"});
+      let issue_text = req.body.issue_text || res.json({"error": "required field(s) missing"});
+      let created_by = req.body.created_by || res.json({"error": "required field(s) missing"});
       let assigned_to = req.body.assigned_to || '';
       let status_text = req.body.status_text || '';
+
+      /*if (issue_title == "" || issue_text == "" || created_by == "") {
+        res.json({"error": "required field(s) missing"});
+      }*/
 
       const newIssue = new IssueLogs({
         "issueTitle": issue_title,
@@ -54,9 +58,6 @@ module.exports = function (app) {
 
       newIssue.save((error, issueData) => {
         if (error) return console.log(error);
-        if (issueData.issueTitle == "" || issueData.issueText == "" || issueData.createdBy == "") {
-          res.json({"error": "required field(s) missing"});
-        }
         res.json({
           "_id": issueData.id,
           "open": issueData.open,
