@@ -1,6 +1,7 @@
 'use strict';
 
 const { response } = require("../server");
+const mongoose = require('mongoose');
 
 module.exports = function (app) {
 
@@ -17,7 +18,7 @@ module.exports = function (app) {
     "createdBy": String,
     "assignedTo": String,
     "statusText": String,
-    "open": true
+    "open": {"type": Boolean, "default": true}
   });
 
   //MODEL
