@@ -72,7 +72,29 @@ module.exports = function (app) {
 
         let responseObject = {};
 
+        //outputs all issue logs from apitest.
         responseObject = logResult;
+
+        if (id || issue_title || issue_text || created_by || assigned_to || status_text) {
+          let issueLogSearch = issueRecords.filter(logs => {
+            if (logs.id == id) {
+              return {"id": logs.id};
+            }else if (logs.issue_title == issue_title) {
+              return {"issue_title": logs.issue_title};
+            }else if (logs.issue_text == issue_text) {
+              return {"issue_text": logs.issue_text};
+            }else if (logs.created_by == created_by) {
+              return {"created_by": logs.created_by};
+            }else if (logs.assigned_to == assigned_to) {
+              return {"assigned_to": logs.assigned_to};
+            }else if (logs.status_text == status_text) {
+              return {"status_text": logs.status_text};
+            }
+          });
+
+          responseObject = issueLogSearch
+
+        }
         
         
         res.json(responseObject);
