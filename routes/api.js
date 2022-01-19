@@ -29,7 +29,10 @@ module.exports = function (app) {
   
     .get(function (req, res){
       let project = req.params.project;
-      
+      IssueLogs.find({"project": project}, (error, issueRecords) => {
+        if (error) return console.log(error);
+        response.json(issueRecords);
+      });
     })
     
     .post(function (req, res){
