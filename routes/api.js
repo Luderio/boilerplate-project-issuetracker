@@ -52,7 +52,7 @@ module.exports = function (app) {
 
       newIssue.save((error, issueData) => {
         if (error) return console.log(error);
-        response.json({
+        res.json({
           "_id": issueData.id,
           "open": issueData.open,
           "issue_title": issueData.issueTitle,
