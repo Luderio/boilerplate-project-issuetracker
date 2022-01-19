@@ -79,7 +79,7 @@ module.exports = function (app) {
 
     //the code below is used to clear the database. 
 
-    UserRecords.remove({}, (error, records) => {
+    IssueLogs.remove({}, (error, records) => {
       if (error) return console.log(error);
       console.log(records)
     });
