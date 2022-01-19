@@ -54,6 +54,9 @@ module.exports = function (app) {
 
       newIssue.save((error, issueData) => {
         if (error) return console.log(error);
+        if (issueData.issueTitle == "" || issueData.issueText == "" || issueData.createdBy == "") {
+          res.json({"error": "required field(s) missing"});
+        }
         res.json({
           "_id": issueData.id,
           "open": issueData.open,
@@ -65,12 +68,6 @@ module.exports = function (app) {
           "created_on": issueData.createdOn,
           "updated_on": issueData.updatedOn
         });
-
-        //test this
-        if (issue_title == "" || issue_text == "" || created_by == "") {
-          res.json({"error": "required field(s) missing"});
-        }
-
       });
 
       
