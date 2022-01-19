@@ -11,13 +11,13 @@ module.exports = function (app) {
 
   //SCHEMA
   const issueTrackerSchema = mongoose.Schema({
-    "issueTitle": String,
-    "issueText": String,
-    "createdOn": String,
-    "updatedOn": String,
-    "createdBy": String,
-    "assignedTo": String,
-    "statusText": String,
+    "issue_title": String,
+    "issue_text": String,
+    "created_on": String,
+    "updated_on": String,
+    "created_by": String,
+    "assigned_to": String,
+    "status_text": String,
     "open": {"type": Boolean, "default": true},
     "project": String
   });
@@ -31,7 +31,7 @@ module.exports = function (app) {
       let project = req.params.project;
       IssueLogs.find({"project": project}, (error, issueRecords) => {
         if (error) return console.log(error);
-        res.json(issueRecords)
+        res.json(issueRecords);
       });
     })
     
@@ -44,13 +44,13 @@ module.exports = function (app) {
       let status_text = req.body.status_text || '';
 
       const newIssue = new IssueLogs({
-        "issueTitle": issue_title,
-        "issueText": issue_text,
-        "createdOn": new Date().toISOString(),
-        "updatedOn": new Date().toISOString(),
-        "createdBy": created_by,
-        "assignedTo": assigned_to,
-        "statusText": status_text,
+        "issue_title": issue_title,
+        "issue_text": issue_text,
+        "created_on": new Date().toISOString(),
+        "updated_on": new Date().toISOString(),
+        "created_by": created_by,
+        "assigned_to": assigned_to,
+        "status_text": status_text,
         "open": true,
         "project": project
       });
@@ -60,13 +60,13 @@ module.exports = function (app) {
         res.json({
           "_id": issueData.id,
           "open": issueData.open,
-          "issue_title": issueData.issueTitle,
-          "issue_text": issueData.issueText,
-          "created_by": issueData.createdBy,
-          "assigned_to": issueData.assignedTo,
-          "status_text": issueData.statusText,
-          "created_on": issueData.createdOn,
-          "updated_on": issueData.updatedOn
+          "issue_title": issueData.issue_title,
+          "issue_text": issueData.issue_text,
+          "created_by": issueData.created_by,
+          "assigned_to": issueData.assigned_to,
+          "status_text": issueData.status_text,
+          "created_on": issueData.created_on,
+          "updated_on": issueData.updated_on
         });
       });
 
