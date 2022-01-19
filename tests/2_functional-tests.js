@@ -72,9 +72,9 @@ suite('Functional Tests', function() {
                 })
                 .end(function(error, response) {
                     assert.equal(response.status, 200);
-                    assert.equal(response.body.issue_title, '');
-                    assert.equal(response.body.issue_text, '');
-                    assert.equal(response.body.created_by, '');
+                    assert.equal(response.body.issue_title, undefined);
+                    assert.equal(response.body.issue_text, undefined);
+                    assert.equal(response.body.created_by, undefined);
                     assert.equal(response.body.assigned_to, 'Ian Rusiana');
                     assert.equal(response.body.status_text, 'In Progress');
                     id1 = response.body._id;
