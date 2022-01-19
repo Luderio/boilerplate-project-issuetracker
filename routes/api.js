@@ -42,21 +42,38 @@ module.exports = function (app) {
       (error, issueRecords) => {
         if (error) return console.log(error);
 
+        let logs = issueRecords;
+        let logResult = logs.map(log => {
+
+          let id = log.id;
+          let issue_title = log.issue_title;
+          let issue_text = log.issue_text;
+          let created_on = log.created_on;
+          let updated_on = log.updated_on;
+          let created_by = log.created_by;
+          let assigned_to = log.assigned_to;
+          let open = log.open;
+          let status_text = log.status_text;
+
+          let issueLogs = {
+            "_id": id,
+            "issue_title": issue_title,
+            "issue_text": issue_text,
+            "created_on": created_on,
+            "updated_on": updated_on,
+            "created_by": created_by,
+            "assigned_to": assigned_to,
+            "open": open,
+            "status_text": status_text
+          };
+
+          return issueLogs;
+        });
+
         let responseObject = {};
 
-        responseObject = issueRecords;
+        responseObject = logResult;
         
-        if (id == true || issue_title == true || issue_text == true || created_by == true || assigned_to == true || status_text == true) {
-          
-          let issueLogSearch = issueRecords.filter(logs => {
-            if (logs.id == id) {
-              return logs.id;
-            }
-          });
-
-          responseObject = issueLogSearch;
-
-        }
         
         res.json(responseObject);
       });
