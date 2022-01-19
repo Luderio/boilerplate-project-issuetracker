@@ -46,6 +46,15 @@ module.exports = function (app) {
 
         responseObject = issueRecords;
         
+        if (id || issue_title || issue_text || created_by || assigned_to || status_text) {
+          
+          let issueLogSearch = issueRecords.filter(logs => {
+            return logs == id || logs == issue_title || logs == issue_text || logs == created_by || logs == assigned_to || logs == status_text;
+          });
+
+          responseObject = issueLogSearch;
+
+        }
         
         res.json(responseObject);
       });
