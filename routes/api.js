@@ -18,7 +18,8 @@ module.exports = function (app) {
     "createdBy": String,
     "assignedTo": String,
     "statusText": String,
-    "open": {"type": Boolean, "default": true}
+    "open": {"type": Boolean, "default": true},
+    "project": String
   });
 
   //MODEL
@@ -36,8 +37,8 @@ module.exports = function (app) {
       let issue_title = req.body.issue_title;
       let issue_text = req.body.issue_text;
       let created_by = req.body.created_by;
-      let assigned_to = req.body.assigned_to;
-      let status_text = req.body.status_text;
+      let assigned_to = req.body.assigned_to || '';
+      let status_text = req.body.status_text || '';
 
       const newIssue = new IssueLogs({
         "issueTitle": issue_title,
@@ -47,7 +48,8 @@ module.exports = function (app) {
         "createdBy": created_by,
         "assignedTo": assigned_to,
         "statusText": status_text,
-        "open": true
+        "open": true,
+        "project": project
       });
 
       newIssue.save((error, issueData) => {
