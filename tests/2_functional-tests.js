@@ -55,7 +55,7 @@ suite('Functional Tests', function() {
                     assert.equal(response.body.assigned_to, '');
                     assert.equal(response.body.status_text, '');
                     id2 = response.body._id;
-                    console.log('id 1 has been set as: ' + id2);
+                    console.log('id 2 has been set as: ' + id2);
                     done();
                 });
             });
@@ -65,7 +65,7 @@ suite('Functional Tests', function() {
                 chai.request(server)
                 .post('/api/issues/apitest')
                 .send({
-                    "issue_title": 'Test Issue 2',
+                    "issue_title": 'Test Issue 3',
                     
                 })
                 .end(function(error, response) {
