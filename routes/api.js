@@ -40,10 +40,6 @@ module.exports = function (app) {
       let assigned_to = req.body.assigned_to || '';
       let status_text = req.body.status_text || '';
 
-      /*if (issue_title == "" || issue_text == "" || created_by == "") {
-        res.json({"error": "required field(s) missing"});
-      }*/
-
       const newIssue = new IssueLogs({
         "issueTitle": issue_title,
         "issueText": issue_text,
@@ -70,8 +66,6 @@ module.exports = function (app) {
           "updated_on": issueData.updatedOn
         });
       });
-
-      
 
     })
     
