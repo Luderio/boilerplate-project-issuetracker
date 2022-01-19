@@ -66,6 +66,7 @@ module.exports = function (app) {
           "updated_on": issueData.updatedOn
         });
 
+        //test this
         if (issue_title == "" || issue_text == "" || created_by == "") {
           res.json({"error": "required field(s) missing"});
         }
