@@ -24,7 +24,7 @@ module.exports = function (app) {
   //MODEL
   const IssueLogs = mongoose.model("IssueLogs", issueTrackerSchema);
 
-  /*app.route('/api/issues/:project')
+  app.route('/api/issues/:project')
   
     .get(function (req, res){
       let project = req.params.project;
@@ -75,13 +75,13 @@ module.exports = function (app) {
     .delete(function (req, res){
       let project = req.params.project;
       
-    });*/
+    });
 
     //the code below is used to clear the database. 
 
-    IssueLogs.remove({}, (error, records) => {
+    /*IssueLogs.remove({}, (error, records) => {
       if (error) return console.log(error);
       console.log(records)
-    });
+    });*/
     
 };
