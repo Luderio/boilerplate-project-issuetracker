@@ -82,6 +82,14 @@ module.exports = function (app) {
         if (_id || issue_title || issue_text || created_on || updated_on || created_by || assigned_to || open || status_text) {
 
           let issueLogSearch = issueRecords.filter(logs => {
+            
+            //condition to handle the ?open=true or ?open=false values from string to boolean value. 
+            if (open == "true") {
+              open = true;
+            }else if (open == "false") {
+              open = false;
+            }
+
             return logs.id == _id 
             || logs.issue_title == issue_title
             || logs.issue_text == issue_text
