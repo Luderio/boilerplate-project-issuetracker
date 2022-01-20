@@ -90,7 +90,7 @@ module.exports = function (app) {
               open = false;
             }
 
-            return logs.id == _id 
+            return logs._id == _id 
             || logs.issue_title == issue_title
             || logs.issue_text == issue_text
             || logs.created_on == created_on
