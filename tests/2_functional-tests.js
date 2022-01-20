@@ -8,7 +8,7 @@ chai.use(chaiHttp);
 let id1 = '';
 let id2 = '';
 
-suite('Functional Tests', function() {
+/*suite('Functional Tests', function() {
     suite('API Route Tests', function() {
         suite('API POST /api/issues/:project', function() {
             
@@ -78,4 +78,4 @@ suite('Functional Tests', function() {
 
         });
     });
-});
+});*/
