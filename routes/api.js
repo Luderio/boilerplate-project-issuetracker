@@ -89,41 +89,24 @@ module.exports = function (app) {
             }else if (open == "false") {
               open = false;
             }
-
+            
             if (_id) {
-              return logs._id == _id;
-            }
-
-            if (issue_title) {
+              return logs._id === _id;
+            }else if (issue_title) {
               return logs.issue_title == issue_title;
-            }
-
-            if (issue_text) {
+            }else if (issue_text) {
               return logs.issue_text == issue_text;
-            }
-
-            if (created_on) {
-              console.log(created_on)
+            }else if (created_on) {
               return logs.created_on == created_on;
-            }
-
-            if (updated_on) {
+            }else if (updated_on) {
               return logs.updated_on == updated_on;
-            }
-
-            if (created_by) {
+            }else if (created_by) {
               return logs.created_by == created_by;
-            }
-
-            if (assigned_to) {
+            }else if (assigned_to) {
               return logs.assigned_to == assigned_to;
-            }
-
-            if (open) {
+            }else if (open) {
               return logs.open == open;
-            }
-
-            if (status_text) {
+            }else if (status_text) {
               return logs.status_text == status_text;
             }
 
