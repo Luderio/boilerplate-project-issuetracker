@@ -29,12 +29,13 @@ module.exports = function (app) {
   
     .get(function (req, res){
       let project = req.params.project;
-      let id = req.query.id;
+      let _id = req.query.id;
       let issue_title = req.query.issue_title;
       let issue_text = req.query.issue_text;
       let created_by = req.query.created_by;
       let assigned_to = req.query.assigned_to;
       let status_text = req.query.status_text;
+      let open = req.query.open;
 
 
       //to dispplay all issue records on '/api/issues//api/issues/apitest/
@@ -75,21 +76,16 @@ module.exports = function (app) {
         //outputs all issue logs from apitest.
         responseObject = logResult;
 
-        if (id || issue_title || issue_text || created_by || assigned_to || status_text) {
+        if (_id || issue_title || issue_text || created_by || assigned_to || status_text || open) {
+
           let issueLogSearch = issueRecords.filter(logs => {
-            if (logs.id == id) {
-              return {"id": logs.id};
-            }else if (logs.issue_title == issue_title) {
-              return {"issue_title": logs.issue_title};
-            }else if (logs.issue_text == issue_text) {
-              return {"issue_text": logs.issue_text};
-            }else if (logs.created_by == created_by) {
-              return {"created_by": logs.created_by};
-            }else if (logs.assigned_to == assigned_to) {
-              return {"assigned_to": logs.assigned_to};
-            }else if (logs.status_text == status_text) {
-              return {"status_text": logs.status_text};
-            }
+            return logs.id == _id 
+            && logs.issue_title == issue_title 
+            && logs.issue_text == issue_text 
+            && logs.created_by == created_by 
+            && logs.assigned_to == assigned_to 
+            && logs.open == open 
+            && logs.status_text == status_text
           });
 
           responseObject = issueLogSearch
