@@ -90,15 +90,44 @@ module.exports = function (app) {
               open = false;
             }
 
-            return logs._id == _id 
-            || logs.issue_title == issue_title
-            || logs.issue_text == issue_text
-            || logs.created_on == created_on
-            || logs.updated_on == updated_on
-            || logs.created_by == created_by
-            || logs.assigned_to == assigned_to
-            || logs.open == open
-            || logs.status_text == status_text;
+            if (_id) {
+              return logs._id == _id;
+            }
+
+            if (issue_title) {
+              return logs.issue_title == issue_title;
+            }
+
+            if (issue_text) {
+              return logs.issue_text == issue_text;
+            }
+
+            if (created_on) {
+              console.log(created_on)
+              return logs.created_on == created_on;
+            }
+
+            if (updated_on) {
+              return logs.updated_on == updated_on;
+            }
+
+            if (created_by) {
+              return logs.created_by == created_by;
+            }
+
+            if (assigned_to) {
+              return logs.assigned_to == assigned_to;
+            }
+
+            if (open) {
+              return logs.open == open;
+            }
+
+            if (status_text) {
+              return logs.status_text == status_text;
+            }
+
+            
           });
           responseObject = issueLogSearch;
         }
