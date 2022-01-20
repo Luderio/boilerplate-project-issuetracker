@@ -110,10 +110,12 @@ module.exports = function (app) {
         if (status_text) {searchQuery['status_text'] = status_text;}
 
         console.log(searchQuery);
+        console.log(Object.keys(searchQuery));
+        console.log(Object.values(searchQuery));
+        console.log("================================");
 
-        let issueLogSearch = logResult.filter(searchResult => {
-          
-        });
+        let searchKeys = Object.keys(searchQuery);
+        let searchValues = Object.values(searchQuery);
 
 
 
