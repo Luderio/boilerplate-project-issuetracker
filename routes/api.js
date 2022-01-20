@@ -81,39 +81,47 @@ module.exports = function (app) {
 
         if (_id || issue_title || issue_text || created_on || updated_on || created_by || assigned_to || open || status_text) {
 
-          let issueLogSearch = logResult.filter(logs => {
-            
-            //condition to handle the ?open=true or ?open=false values from string to boolean value. 
+          let searchQuery = {};
+
+          if (_id) {searchQuery['_id'] = _id;}
+
+        if (issue_title) {searchQuery['issue_title'] = issue_title}
+
+        if (issue_text) {searchQuery['issue_text'] = issue_text}
+
+        if (created_on) {searchQuery['created_on'] = created_on}
+
+        if (updated_on) {searchQuery['updated_on'] = updated_on}
+
+        if (created_by) {searchQuery['created_by'] = created_by}
+
+        if (assigned_to) {searchQuery['assigned_to'] = assigned_to}
+
+        if (open) {
+
+          //condition to handle the ?open=true or ?open=false values from string to boolean value. 
             if (open == "true") {
               open = true;
-            }else if (open == "false") {
+              }else if (open == "false") {
               open = false;
-            }
-            
-            if (_id) {
-              return logs._id === _id;
-            }else if (issue_title) {
-              return logs.issue_title == issue_title;
-            }else if (issue_text) {
-              return logs.issue_text == issue_text;
-            }else if (created_on) {
-              return logs.created_on == created_on;
-            }else if (updated_on) {
-              return logs.updated_on == updated_on;
-            }else if (created_by) {
-              return logs.created_by == created_by;
-            }else if (assigned_to) {
-              return logs.assigned_to == assigned_to;
-            }else if (open) {
-              return logs.open == open;
-            }else if (status_text) {
-              return logs.status_text == status_text;
+              }
+
+              searchQuery['open'] = open
+
             }
 
-            
-          });
-          responseObject = issueLogSearch;
-        }
+        if (status_text) {}
+
+        console.log(searchQuery);
+
+        let issueLogSearch = logResult.filter(searchResult => {
+          
+        });
+
+
+
+      }
+
         
         
         res.json(responseObject);
