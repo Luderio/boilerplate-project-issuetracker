@@ -85,29 +85,26 @@ module.exports = function (app) {
 
           if (_id) {searchQuery['_id'] = _id;}
 
-        if (issue_title) {searchQuery['issue_title'] = issue_title}
+        if (issue_title) {searchQuery['issue_title'] = issue_title;}
 
-        if (issue_text) {searchQuery['issue_text'] = issue_text}
+        if (issue_text) {searchQuery['issue_text'] = issue_text;}
 
-        if (created_on) {searchQuery['created_on'] = created_on}
+        if (created_on) {searchQuery['created_on'] = created_on;}
 
-        if (updated_on) {searchQuery['updated_on'] = updated_on}
+        if (updated_on) {searchQuery['updated_on'] = updated_on;}
 
-        if (created_by) {searchQuery['created_by'] = created_by}
+        if (created_by) {searchQuery['created_by'] = created_by;}
 
-        if (assigned_to) {searchQuery['assigned_to'] = assigned_to}
+        if (assigned_to) {searchQuery['assigned_to'] = assigned_to;}
 
         if (open) {
-
           //condition to handle the ?open=true or ?open=false values from string to boolean value. 
             if (open == "true") {
               open = true;
               }else if (open == "false") {
               open = false;
               }
-
-              searchQuery['open'] = open
-
+              searchQuery['open'] = open;
             }
 
         if (status_text) {}
