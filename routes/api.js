@@ -107,7 +107,7 @@ module.exports = function (app) {
               searchQuery['open'] = open;
             }
 
-        if (status_text) {}
+        if (status_text) {searchQuery['status_text'] = status_text;}
 
         console.log(searchQuery);
 
