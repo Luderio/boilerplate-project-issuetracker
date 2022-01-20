@@ -80,12 +80,12 @@ module.exports = function (app) {
 
           let issueLogSearch = issueRecords.filter(logs => {
             return logs.id == _id 
-            && logs.issue_title == issue_title 
-            && logs.issue_text == issue_text 
-            && logs.created_by == created_by 
-            && logs.assigned_to == assigned_to 
-            && logs.open == open 
-            && logs.status_text == status_text
+            || logs.issue_title == issue_title 
+            ||logs.issue_text == issue_text 
+            || logs.created_by == created_by 
+            || logs.assigned_to == assigned_to 
+            || logs.open == open 
+            || logs.status_text == status_text
           });
 
           responseObject = issueLogSearch
