@@ -29,13 +29,16 @@ module.exports = function (app) {
   
     .get(function (req, res){
       let project = req.params.project;
-      let _id = req.query.id;
+
+      let _id = req.query._id;
       let issue_title = req.query.issue_title;
       let issue_text = req.query.issue_text;
       let created_by = req.query.created_by;
       let assigned_to = req.query.assigned_to;
       let status_text = req.query.status_text;
       let open = req.query.open;
+      let created_on = req.query.created_on;
+      let updated_on = req.query.updated_on;
 
 
       //to dispplay all issue records on '/api/issues//api/issues/apitest/
@@ -76,19 +79,21 @@ module.exports = function (app) {
         //outputs all issue logs from apitest.
         responseObject = logResult;
 
-        if (_id || issue_title || issue_text || created_by || assigned_to || status_text || open) {
+        if (_id || issue_title || issue_text || created_on || updated_on || created_by || assigned_to || open || status_text) {
 
           let issueLogSearch = issueRecords.filter(logs => {
             return logs.id == _id 
-            || logs.issue_title == issue_title 
-            ||logs.issue_text == issue_text 
-            || logs.created_by == created_by 
-            || logs.assigned_to == assigned_to 
-            || logs.open == open 
-            || logs.status_text == status_text
+            || logs.issue_title == issue_title
+            || logs.issue_text == issue_text
+            || logs.created_on == created_on
+            || logs.updated_on == updated_on
+            || logs.created_by == created_by
+            || logs.assigned_to == assigned_to
+            || logs.open == open
+            || logs.status_text == status_text;
           });
 
-          responseObject = issueLogSearch
+          responseObject = issueLogSearch;
 
         }
         
