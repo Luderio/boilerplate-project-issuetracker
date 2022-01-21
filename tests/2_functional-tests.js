@@ -179,19 +179,33 @@ suite('Functional Tests', function() {
                 .end(function(error, response) {
                     assert.isObject(response.body);
                     assert.property(response.body, 'error');
-                    assert.property(response.body.error, 'missing _id');
                     done();
                 });
             });
 
             //Test 10: Update an issue with no fields to update: PUT request to /api/issues/{project}
             test('Update an issue with no fields to update', function(done) {
-
+                chai.request(server)
+                .put('/api/issues/apitest')
+                .send({})
+                .end(function(error, response) {
+                    assert.isObject(response.body);
+                    assert.property(response.body, 'error');
+                    done();
+                });
             });
 
             //Test 11: Update an issue with an invalid _id: PUT request to /api/issues/{project}
             test('Update an issue with an invalid _id', function(done) {
-
+                chai.request(server)
+                .put('/api/issues/apitest')
+                .send({"_id": 'invalid id'})
+                .end(function(error, response) {
+                    assert.isObject(response.body);
+                    assert.property(response.body, 'error');
+                    assert.property(response.body, '_id');
+                    done();
+                });
             });
 
         });
