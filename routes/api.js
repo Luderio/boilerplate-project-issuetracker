@@ -118,6 +118,12 @@ module.exports = function (app) {
 
       let newDetails = Object.assign(req.body);
       newDetails['updated_on'] = new Date().toISOString();
+
+      if (Object.values(newDetails) === '') {
+        res.json({"error": "no update field(s) sent", "_id": id});
+      }else {
+        res.json({"error": "could not update", "_id": id});
+      }
       
       IssueLogs.findById({"_id": id}, (error, updatedDetails) => {
         if (error) return console.log(error);
