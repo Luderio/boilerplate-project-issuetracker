@@ -140,28 +140,27 @@ module.exports = function (app) {
         || newDetails.status_text
         || newDetails.open
       ) {
-        IssueLogs.findById({"_id": newDetails._id}, (error, updatedDetails) => {
-          if (error) return console.log(error);
-  
-          //not working properly
-
-          updatedDetails.issue_title = newDetails.issue_title;
-          updatedDetails.issue_text = newDetails.issue_text;
-          updatedDetails.created_by = newDetails.created_by;
-          updatedDetails.assigned_to = newDetails.assigned_to;
-          updatedDetails.status_text = newDetails.status_text;
-          updatedDetails.updated_on = newDetails.updated_on;
-          updatedDetails.open = newDetails.open;
-  
-          updatedDetails.save((error, updatedRecord) => {
+        IssueLogs.findOneAndUpdate
+        (
+          {"_id": newDetails._id},
+          {
+            "issue_title": newDetails.issue_title,
+            "issue_text": newDetails.issue_text ,
+            "created_by ": newDetails.created_by ,
+            "assigned_to": newDetails.assigned_to,
+            "status_text": newDetails.status_text,
+            "open": newDetails.open,
+            "updated_on": newDetails.updated_on
+          },
+          {new: true},
+          (error, updatedRecord) => {
             if (error) return console.log(error);
             res.json({
               "result": 'successfully updated',
               "_id": updatedRecord._id
             });
-          })
-  
-        });
+          }
+        );
 
       }else {
         res.json({"error": "could not update", "_id": newDetails._id});
