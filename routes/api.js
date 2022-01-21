@@ -122,7 +122,7 @@ module.exports = function (app) {
       }else if (!newDetails) {
         res.json({'error': 'no update field(s) sent', '_id': _id });
       }else if (newDetails) {
-        IssueLogs.findById(newDetails._id, (error, updatedDetails) => {
+        IssueLogs.findById({"_id": newDetails._id}, (error, updatedDetails) => {
           if (error) return console.log(error);
   
           //not working properly
