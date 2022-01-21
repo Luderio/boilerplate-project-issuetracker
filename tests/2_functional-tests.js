@@ -75,7 +75,7 @@ suite('Functional Tests', function() {
                     done();
                 });
             });
-        });*/
+        });
 
         //TEST Suite for the GET Route
         suite('API GET /api/issues/:project', function() {
@@ -127,6 +127,6 @@ suite('Functional Tests', function() {
                     done();
                 });
             });
-        });
+        });*/
     });
 });
