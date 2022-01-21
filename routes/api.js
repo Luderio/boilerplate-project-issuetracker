@@ -127,6 +127,7 @@ module.exports = function (app) {
       }else if (!Object.keys(newObjectDetails).includes('_id')) {
         return res.json({ error: 'missing _id' });
       }else if (Object.keys(newObjectDetails).length >= 2) {
+        newObjectDetails['updated_on'] = new Date().toISOString();
         IssueLogs.findOneAndUpdate
         (
           {"_id": newObjectDetails._id},
@@ -134,9 +135,9 @@ module.exports = function (app) {
           {new: true},
           (error, updatedRecord) => {
             if (!error && updatedRecord) {
-              return res.json({"result": 'successfully updated', "_id": newObjectDetails._id});
+              return res.json({"result": 'successfully updated', "_id": updatedRecord._id});
             }else if (!updatedRecord) {
-              return res.json({"error": "could not update", "_id": newObjectDetails._id});
+              return res.json({"error": "could not update", "_id": updatedRecord._id});
             }
           }
         );
@@ -144,10 +145,6 @@ module.exports = function (app) {
 
     })
     
-    .delete(function (req, res){
-      let project = req.params.project;
-      
-    });
     
     .delete(function (req, res){
       let project = req.params.project;
