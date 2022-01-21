@@ -133,14 +133,15 @@ module.exports = function (app) {
           newObjectDetails,
           {new: true},
           (error, updatedRecord) => {
-            if (error) return console.log(error);
-            res.json({
-              "result": 'successfully updated', "_id": newObjectDetails._id});
+            if (!error && updatedRecord) {
+              return res.json({"result": 'successfully updated', "_id": newObjectDetails._id});
+            }else if (!updatedRecord) {
+              return res.json({"error": "could not update", "_id": newObjectDetails._id});
+            }
           }
         );
-      }else {
-        res.json({"error": "could not update", "_id": newObjectDetails._id});
       }
+
     })
     
     .delete(function (req, res){
