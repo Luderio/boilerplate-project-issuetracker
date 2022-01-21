@@ -117,7 +117,9 @@ module.exports = function (app) {
           let logSearch = logResult.filter(logs => {
             let searchKeysItems = searchKeys.map(keys => {
               let searchValuesItems = searchValues.map(values => {
-                return logs[keys] == values;
+                if (logs[keys].includes(values)) {
+                  return logs[keys];
+                }
               });
               return searchValuesItems;
             });
