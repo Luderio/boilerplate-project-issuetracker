@@ -138,13 +138,12 @@ suite('Functional Tests', function() {
                 chai.request(server)
                 .put('/api/issues/apitest')
                 .send({
-                    "_id": '61ea47cf9c5c2604166c6ae4',
-                    "issue_title": 'Test Issue'
+                    "_id": '61ea47cf9c5c2604166c6ae4'
                 })
                 .end(function(error, response) {
                     assert.equal(response.status, 200);
                     assert.isObject(response.body);
-                    assert.property(response.body, 'result');
+                    assert.property(response.body, 'error');
                     assert.property(response.body, '_id');
                     done();
                 });
