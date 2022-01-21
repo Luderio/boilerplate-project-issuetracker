@@ -144,12 +144,21 @@ module.exports = function (app) {
           }
         );
       }
-
     })
-    
     
     .delete(function (req, res){
       let project = req.params.project;
+
+      let _id = req.body._id;
+
+      IssueLogs.findByIdAndRemove({"_id": _id}, (error, result) => {
+        if (!error && result) {
+          return res.json({ result: 'successfully deleted', '_id': _id });
+        }else if (!updatedRecord) {
+          return res.json({ error: 'could not delete', '_id': _id });
+        }
+        
+      });
       
     });
 
