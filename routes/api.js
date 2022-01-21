@@ -156,9 +156,7 @@ module.exports = function (app) {
           (error, updatedRecord) => {
             if (error) return console.log(error);
             res.json({
-              "result": 'successfully updated',
-              "_id": updatedRecord._id
-            });
+              "result": 'successfully updated', "_id": updatedRecord._id});
           }
         );
 
