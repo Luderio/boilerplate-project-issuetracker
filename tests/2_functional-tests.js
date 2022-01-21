@@ -2,15 +2,17 @@ const chaiHttp = require('chai-http');
 const chai = require('chai');
 const assert = chai.assert;
 const server = require('../server');
+const res = require('express/lib/response');
 
 chai.use(chaiHttp);
 
 let id1 = '';
 let id2 = '';
 
-/*suite('Functional Tests', function() {
+suite('Functional Tests', function() {
     suite('API Route Tests', function() {
-        suite('API POST /api/issues/:project', function() {
+        //Test Suite for the POST Route
+        /*suite('API POST /api/issues/:project', function() {
             
             //Test 1: Create an issue with every field: POST request to /api/issues/{project}
             test('Create an issue with every field', function(done) {
@@ -73,9 +75,58 @@ let id2 = '';
                     done();
                 });
             });
+        });*/
 
+        //TEST Suite for the GET Route
+        suite('API GET /api/issues/:project', function() {
 
+            //Test 4: View issues on a project: GET request to /api/issues/{project}
+            test('View issues on a project (no filter)', function(done) {
+                chai.request(server)
+                .get('/api/issues/apitest')
+                .query({})
+                .end(function(error, response) {
+                    assert.equal(response.status, 200);
+                    assert.isArray(response.body);
+                    assert.property(response.body[0], '_id');
+                    assert.property(response.body[0], 'issue_title');
+                    assert.property(response.body[0], 'issue_text');
+                    assert.property(response.body[0], 'created_on');
+                    assert.property(response.body[0], 'updated_on');
+                    assert.property(response.body[0], 'created_by');
+                    assert.property(response.body[0], 'assigned_to');
+                    assert.property(response.body[0], 'open');
+                    assert.property(response.body[0], 'status_text');
+                    done();
+                });
+            });
 
+            //Test 5: View issues on a project with one filter: GET request to /api/issues/{project}
+            test('View issues on a project with one filter', function(done) {
+                chai.request(server)
+                .get('/api/issues/apitest')
+                .query({"issue_text": 'Functional tests - Every field filled in'})
+                .end(function(error, response) {
+                    response.body.forEach((issueResult) => {
+                        assert.equal(issueResult.issue_text, 'Functional tests - Every field filled in');
+                    });
+                    done();
+                });
+            });
+
+            //Test 6: View issues on a project with multiple filters: GET request to /api/issues/{project}
+            test('View issues on a project with multiple filters', function(done) {
+                chai.request(server)
+                .get('/api/issues/apitest')
+                .query({"issue_text": 'Functional tests - Every field filled in', "assigned_to": 'Ian Rusiana'})
+                .end(function(error, response) {
+                    response.body.forEach((issueResult) => {
+                        assert.equal(issueResult.issue_text, 'Functional tests - Every field filled in');
+                        assert.equal(issueResult.assigned_to, 'Ian Rusiana');
+                    });
+                    done();
+                });
+            });
         });
     });
-});*/
+});
