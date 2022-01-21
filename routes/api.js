@@ -114,60 +114,39 @@ module.exports = function (app) {
     .put(function (req, res){
       let project = req.params.project;
       
-      let newDetails = Object.assign(req.body);
-      newDetails['updated_on'] = new Date().toISOString();
+      let newObjectDetails = {};
+      
+      Object.keys(req.body).forEach(key => {
+        if (req.body[key] != '') {
+          newObjectDetails[key] = req.body[key];
+        }
+      });
 
-      if (!newDetails._id) {
-        res.json({error: 'missing _id'});
-      }else if 
-      (
-        !newDetails._id 
-        && !newDetails.issue_title 
-        && !newDetails.issue_text 
-        && !newDetails.created_by 
-        && !newDetails.assigned_to 
-        && !newDetails.status_text
-        && !newDetails.open
-      ) {
-        res.json({'error': 'no update field(s) sent', '_id': newDetails._id});
-      }else if 
-      (
-        newDetails._id 
-        || newDetails.issue_title 
-        || newDetails.issue_text 
-        || newDetails.created_by 
-        || newDetails.assigned_to 
-        || newDetails.status_text
-        || newDetails.open
-      ) {
+      if (Object.keys(newObjectDetails).length < 2) {
+        return res.json({error: 'no update field(s) sent', '_id': newObjectDetails._id})
+      }else if (!Object.keys(newObjectDetails).includes('_id')) {
+        return res.json({ error: 'missing _id' });
+      }else if (Object.keys(newObjectDetails).length >= 2) {
         IssueLogs.findOneAndUpdate
         (
-          {"_id": newDetails._id},
-          {
-            "issue_title": newDetails.issue_title,
-            "issue_text": newDetails.issue_text ,
-            "created_by ": newDetails.created_by ,
-            "assigned_to": newDetails.assigned_to,
-            "status_text": newDetails.status_text,
-            "open": newDetails.open,
-            "updated_on": newDetails.updated_on
-          },
+          {"_id": newObjectDetails._id},
+          newObjectDetails,
           {new: true},
           (error, updatedRecord) => {
             if (error) return console.log(error);
             res.json({
-              "result": 'successfully updated', "_id": newDetails._id});
+              "result": 'successfully updated', "_id": newObjectDetails._id});
           }
         );
-
       }else {
-        res.json({"error": "could not update", "_id": newDetails._id});
+        res.json({"error": "could not update", "_id": newObjectDetails._id});
       }
-
-      
-      
-
     })
+    
+    .delete(function (req, res){
+      let project = req.params.project;
+      
+    });
     
     .delete(function (req, res){
       let project = req.params.project;
