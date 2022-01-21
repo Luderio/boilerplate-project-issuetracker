@@ -138,7 +138,7 @@ suite('Functional Tests', function() {
                 chai.request(server)
                 .put('/api/issues/apitest')
                 .send({
-                    "_id": '61ea47cf9c5c2604166c6ae4'
+                    "_id": id1
                 })
                 .end(function(error, response) {
                     assert.equal(response.status, 200);
@@ -154,7 +154,7 @@ suite('Functional Tests', function() {
                 chai.request(server)
                 .put('/api/issues/apitest')
                 .send({
-                    "_id": '61ea47cf9c5c2604166c6ae4',
+                    "_id": id1,
                     "issue_title": 'Test Issue',
                     "issue_text": 'Functional Testing',
                     "created_by": 'Luderio Sanchez',
