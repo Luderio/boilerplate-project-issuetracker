@@ -117,27 +117,38 @@ module.exports = function (app) {
       let newDetails = Object.assign(req.body);
       newDetails['updated_on'] = new Date().toISOString();
 
-      
-      IssueLogs.findById({"_id": id}, (error, updatedDetails) => {
-        if (error) return console.log(error);
-
-        updatedDetails.issue_title = newDetails.issue_title;
-        updatedDetails.issue_text = newDetails.issue_text;
-        updatedDetails.created_by = newDetails.created_by;
-        updatedDetails.assigned_to = newDetails.assigned_to;
-        updatedDetails.status_text = newDetails.status_text;
-        updatedDetails.updated_on = newDetails.updated_on;
-        updatedDetails.open = newDetails.open;
-
-        updatedDetails.save((error, updatedRecord) => {
+      if (!newDetails._id) {
+        res.json({error: 'missing _id'});
+      }else if (!newDetails) {
+        res.json({'error': 'no update field(s) sent', '_id': _id });
+      }else if (newDetails) {
+        IssueLogs.findById({"_id": id}, (error, updatedDetails) => {
           if (error) return console.log(error);
-          res.json({
-            "result": 'successfully updated',
-            "_id": updatedRecord._id
-          });
-        })
+  
+          updatedDetails.issue_title = newDetails.issue_title;
+          updatedDetails.issue_text = newDetails.issue_text;
+          updatedDetails.created_by = newDetails.created_by;
+          updatedDetails.assigned_to = newDetails.assigned_to;
+          updatedDetails.status_text = newDetails.status_text;
+          updatedDetails.updated_on = newDetails.updated_on;
+          updatedDetails.open = newDetails.open;
+  
+          updatedDetails.save((error, updatedRecord) => {
+            if (error) return console.log(error);
+            res.json({
+              "result": 'successfully updated',
+              "_id": updatedRecord._id
+            });
+          })
+  
+        });
 
-      });
+      }else {
+        res.json({"error": "could not update", "_id": id});
+      }
+
+      
+      
 
     })
     
