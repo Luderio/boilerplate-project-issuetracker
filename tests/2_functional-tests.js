@@ -123,13 +123,14 @@ suite('Functional Tests', function() {
                     response.body.forEach((issueResult) => {
                         assert.equal(issueResult.issue_text, 'Functional tests - Every field filled in');
                         assert.equal(issueResult.assigned_to, 'Ian Rusiana');
+                        
                     });
                     done();
                 });
             });
         });*/
 
-        //Test Suite for the PUT Route
+        //Test Suite for the PUT Route..
         suite('API PUT /api/issues/:project', function() {
 
             //Test 7: Update one field on an issue: PUT request to /api/issues/{project}..
