@@ -132,7 +132,7 @@ suite('Functional Tests', function() {
         //Test Suite for the PUT Route
         suite('API PUT /api/issues/:project', function() {
 
-            //Test 7: Update one field on an issue: PUT request to /api/issues/{project}
+            //Test 7: Update one field on an issue: PUT request to /api/issues/{project}..
             test('Update one field on an issue', function(done) {
                 chai.request(server)
                 .put('/api/issues/apitest')
