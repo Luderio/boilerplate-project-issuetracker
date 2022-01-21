@@ -114,19 +114,19 @@ module.exports = function (app) {
           let searchKeys = Object.keys(searchQuery);
           let searchValues = Object.values(searchQuery);
 
-          let logSearch = logResult.filter(logs => {
-            let searchKeysItems = searchKeys.map(keys => {
-              let searchValuesItems = searchValues.map(values => {
-                if (logs[keys].includes(values)) {
-                  return logs;
+          let searchKeysItems = searchKeys.map(keys => {
+            let searchValuesItems = searchValues.map(values => {
+              let logSearch = logResult.map(logs => {
+                for (keys in logs) {
+                  if (logs[keys] == values) {
+                    return logs[keys] == values;
+                  }
                 }
               });
-              return searchValuesItems;
             });
-            return searchKeysItems;
           });
 
-          console.log(logSearch);
+          //console.log(logSearch);
 
         
         }
