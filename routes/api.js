@@ -116,15 +116,11 @@ module.exports = function (app) {
 
           let logSearch = logResult.filter(logs => {
             let searchKeysItems = searchKeys.map(keys => {
-              if (keys in logs) {
-                let searchValuesItems = searchValues.map(values => {
-                  return logs.keys == values;
-                });
-
-                return searchValuesItems;
-              }
+              let searchValuesItems = searchValues.map(values => {
+                return logs[keys] == values;
+              });
+              return searchValuesItems;
             });
-
             return searchKeysItems;
           });
 
