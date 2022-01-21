@@ -29,9 +29,12 @@ module.exports = function (app) {
   
     .get(function (req, res){
       let project = req.params.project;
+      //collects the search queries from the browser.
+      let objectFilter = Object.assign(req.query);
+      objectFilter['project'] = project;
 
       //to dispplay all issue records on '/api/issues//api/issues/apitest/
-      IssueLogs.find({"project": project},
+      IssueLogs.find(objectFilter,
       (error, issueRecords) => {
         if (error) return console.log(error);
 
@@ -67,20 +70,6 @@ module.exports = function (app) {
 
         //outputs all issue logs from apitest.
         responseObject = logResult;
-
-        if (_id || issue_title || issue_text || created_on || updated_on || created_by || assigned_to || open || status_text) {
-
-          //collects the search queries from the browser.
-          let objectFilter = Object.assign(req.query);
-          let logSearch = logResult.find(objectFilter);
-
-          responseObject = logSearch;
-        }
-
-        //collects the search queries from the browser.
-        let objectFilter = Object.assign(req.query);
-        logResult.find(objectFilter);
-
         res.json(responseObject);
       });
     })
