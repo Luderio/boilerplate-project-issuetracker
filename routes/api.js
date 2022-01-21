@@ -151,10 +151,14 @@ module.exports = function (app) {
 
       let _id = req.body._id;
 
+      if (!_id) {
+        return res.json({ error: 'missing _id' });
+      }
+
       IssueLogs.findByIdAndRemove({"_id": _id}, (error, result) => {
         if (!error && result) {
           return res.json({ result: 'successfully deleted', '_id': _id });
-        }else if (!updatedRecord) {
+        }else if (!result) {
           return res.json({ error: 'could not delete', '_id': _id });
         }
         

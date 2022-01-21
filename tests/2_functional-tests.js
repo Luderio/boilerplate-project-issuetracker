@@ -207,7 +207,54 @@ suite('Functional Tests', function() {
                     done();
                 });
             });
-
         });*/
+
+        //Test Suite for the DELETE Route
+        suite('API DELETE /api/issues/:project', function() {
+
+            //Test 12: Delete an issue: DELETE request to /api/issues/{project}
+            test('Delete an issue using _id', function(done) {
+                chai.request(server)
+                .delete('/api/issues/apitest')
+                .send({
+                    "_id": id1
+                })
+                .end(function(error, response) {
+                    assert.equal(response.status, 200);
+                    assert.isObject(response.body);
+                    assert.property(response.body, 'result');
+                    assert.property(response.body, '_id');
+                    done();
+                });
+            });
+
+            //Test 13: Delete an issue with an invalid _id: DELETE request to /api/issues/{project}
+            test('Delete an issue with an invalid _id', function(done) {
+                chai.request(server)
+                .delete('/api/issues/apitest')
+                .send({
+                    "_id": 'Invalid id'
+                })
+                .end(function(error, response) {
+                    assert.isObject(response.body);
+                    assert.property(response.body, 'error');
+                    assert.property(response.body, '_id');
+                    done();
+                });
+            });
+
+
+            //Test 14: Delete an issue with missing _id: DELETE request to /api/issues/{project}
+            test('Delete an issue with missing _id', function(done) {
+                chai.request(server)
+                .delete('/api/issues/apitest')
+                .send({})
+                .end(function(error, response) {
+                    assert.isObject(response.body);
+                    assert.property(response.body, 'error');
+                    done();
+                });
+            });
+        });
     });
 });
