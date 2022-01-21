@@ -125,6 +125,8 @@ module.exports = function (app) {
         IssueLogs.findById({"_id": id}, (error, updatedDetails) => {
           if (error) return console.log(error);
   
+          //not working properly
+          
           updatedDetails.issue_title = newDetails.issue_title;
           updatedDetails.issue_text = newDetails.issue_text;
           updatedDetails.created_by = newDetails.created_by;
