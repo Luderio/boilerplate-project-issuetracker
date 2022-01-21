@@ -119,9 +119,27 @@ module.exports = function (app) {
 
       if (!newDetails._id) {
         res.json({error: 'missing _id'});
-      }else if (!newDetails) {
+      }else if 
+      (
+        newDetails._id 
+        && !newDetails.issue_title 
+        && !newDetails.issue_text 
+        && !newDetails.created_by 
+        && !newDetails.assigned_to 
+        && !newDetails.status_text
+        && !newDetails.open
+      ) {
         res.json({'error': 'no update field(s) sent', '_id': _id });
-      }else if (newDetails) {
+      }else if 
+      (
+        newDetails._id 
+        || newDetails.issue_title 
+        || newDetails.issue_text 
+        || newDetails.created_by 
+        || newDetails.assigned_to 
+        || newDetails.status_text
+        || newDetails.open
+      ) {
         IssueLogs.findById({"_id": newDetails._id}, (error, updatedDetails) => {
           if (error) return console.log(error);
   
