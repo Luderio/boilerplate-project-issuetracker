@@ -169,7 +169,19 @@ suite('Functional Tests', function() {
 
             //Test 9: Update an issue with missing _id: PUT request to /api/issues/{project}
             test('Update an issue with missing _id', function(done) {
-
+                chai.request(server)
+                .put('/api/issues/apitest')
+                .send({
+                    "issue_title": 'Test Issue',
+                    "issue_text": 'Functional Testing',
+                    "created_by": 'Luderio Sanchez'
+                })
+                .end(function(error, response) {
+                    assert.isObject(response.body);
+                    assert.property(response.body, 'error');
+                    assert.property(response.body.error, 'missing _id');
+                    done();
+                });
             });
 
             //Test 10: Update an issue with no fields to update: PUT request to /api/issues/{project}
