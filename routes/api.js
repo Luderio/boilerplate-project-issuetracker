@@ -122,10 +122,12 @@ module.exports = function (app) {
         }
       });
 
+      if (!Object.keys(newObjectDetails).includes('_id')) {
+        return res.json({ error: 'missing _id' });
+      }
+
       if (Object.keys(newObjectDetails).length < 2) {
         return res.json({error: 'no update field(s) sent', '_id': newObjectDetails._id})
-      }else if (!Object.keys(newObjectDetails).includes('_id')) {
-        return res.json({ error: 'missing _id' });
       }else if (Object.keys(newObjectDetails).length >= 2) {
         newObjectDetails['updated_on'] = new Date().toISOString();
         IssueLogs.findOneAndUpdate

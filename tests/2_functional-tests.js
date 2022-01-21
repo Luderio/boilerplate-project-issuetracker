@@ -78,7 +78,7 @@ suite('Functional Tests', function() {
         });
 
         //TEST Suite for the GET Route
-        suite('API GET /api/issues/:project', function() {
+        suite('API GET /api/issues/:project//api/issues/apitest/', function() {
 
             //Test 4: View issues on a project: GET request to /api/issues/{project}
             test('View issues on a project (no filter)', function(done) {
@@ -128,5 +128,47 @@ suite('Functional Tests', function() {
                 });
             });
         });*/
+
+        //Test Suite for the PUT Route
+        suite('API PUT /api/issues/:project', function() {
+
+            //Test 7: Update one field on an issue: PUT request to /api/issues/{project}
+            test('Update one field on an issue', function(done) {
+                chai.request(server)
+                .put('/api/issues/apitest')
+                .send({
+                    "_id": '61ea47cf9c5c2604166c6ae4',
+                    "issue_title": 'Test Issue'
+                })
+                .end(function(error, response) {
+                    assert.equal(response.status, 200);
+                    assert.isObject(response.body);
+                    assert.property(response.body[0], 'result');
+                    assert.property(response.body[0], '_id');
+                    done();
+                });
+            });
+
+            //Test 8: Update multiple fields on an issue: PUT request to /api/issues/{project}
+            test('Update multiple fields on an issue', function(done) {
+
+            });
+
+            //Test 9: Update an issue with missing _id: PUT request to /api/issues/{project}
+            test('Update an issue with missing _id', function(done) {
+
+            });
+
+            //Test 10: Update an issue with no fields to update: PUT request to /api/issues/{project}
+            test('Update an issue with no fields to update', function(done) {
+
+            });
+
+            //Test 11: Update an issue with an invalid _id: PUT request to /api/issues/{project}
+            test('Update an issue with an invalid _id', function(done) {
+
+            });
+
+        });
     });
 });
