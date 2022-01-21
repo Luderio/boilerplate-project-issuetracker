@@ -135,9 +135,9 @@ module.exports = function (app) {
           {new: true},
           (error, updatedRecord) => {
             if (!error && updatedRecord) {
-              return res.json({"result": 'successfully updated', "_id": updatedRecord._id});
+              return res.json({"result": 'successfully updated', "_id": newObjectDetails._id});
             }else if (!updatedRecord) {
-              return res.json({"error": "could not update", "_id": updatedRecord._id});
+              return res.json({"error": "could not update", "_id": newObjectDetails._id});
             }
           }
         );
