@@ -81,48 +81,58 @@ module.exports = function (app) {
 
         if (_id || issue_title || issue_text || created_on || updated_on || created_by || assigned_to || open || status_text) {
 
+          //stores the search queries from the search bar of the browser. 
           let searchQuery = {};
 
           if (_id) {searchQuery['_id'] = _id;}
 
-        if (issue_title) {searchQuery['issue_title'] = issue_title;}
+          if (issue_title) {searchQuery['issue_title'] = issue_title;}
 
-        if (issue_text) {searchQuery['issue_text'] = issue_text;}
+          if (issue_text) {searchQuery['issue_text'] = issue_text;}
 
-        if (created_on) {searchQuery['created_on'] = created_on;}
+          if (created_on) {searchQuery['created_on'] = created_on;}
 
-        if (updated_on) {searchQuery['updated_on'] = updated_on;}
+          if (updated_on) {searchQuery['updated_on'] = updated_on;}
 
-        if (created_by) {searchQuery['created_by'] = created_by;}
+          if (created_by) {searchQuery['created_by'] = created_by;}
 
-        if (assigned_to) {searchQuery['assigned_to'] = assigned_to;}
+          if (assigned_to) {searchQuery['assigned_to'] = assigned_to;}
 
-        if (open) {
-          //condition to handle the ?open=true or ?open=false values from string to boolean value. 
-            if (open == "true") {
-              open = true;
-              }else if (open == "false") {
-              open = false;
+          if (open) {
+            //condition to handle the ?open=true or ?open=false values from string to boolean value. 
+              if (open == "true") {
+                open = true;
+                }else if (open == "false") {
+                open = false;
+                }
+                searchQuery['open'] = open;
               }
-              searchQuery['open'] = open;
-            }
 
-        if (status_text) {searchQuery['status_text'] = status_text;}
+          if (status_text) {searchQuery['status_text'] = status_text;}
 
-        console.log(searchQuery);
-        console.log(Object.keys(searchQuery));
-        console.log(Object.values(searchQuery));
-        console.log("================================");
+          //extrtacts the serach queries by key and value.
+          let searchKeys = Object.keys(searchQuery);
+          let searchValues = Object.values(searchQuery);
 
-        let searchKeys = Object.keys(searchQuery);
-        let searchValues = Object.values(searchQuery);
+          let logSearch = logResult.filter(logs => {
+            let searchKeysItems = searchKeys.map(keys => {
+              if (keys in logs) {
+                let searchValuesItems = searchValues.map(values => {
+                  return logs.keys == values;
+                });
 
+                return searchValuesItems;
+              }
+            });
 
+            return searchKeysItems;
+          });
 
-      }
+          console.log(logSearch);
 
         
-        
+        }
+
         res.json(responseObject);
       });
 
