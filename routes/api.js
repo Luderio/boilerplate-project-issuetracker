@@ -115,12 +115,7 @@ module.exports = function (app) {
       let project = req.params.project;
       
       let id = req.body._id || res.json({"error": "missing _id"});
-      let issue_title = req.body.issue_title || res.json({"error": "no update field(s) sent", "_id": id});;
-      let issue_text = req.body.issue_text || res.json({"error": "no update field(s) sent", "_id": id});;
-      let created_by = req.body.created_by || res.json({"error": "no update field(s) sent", "_id": id});;
-      let assigned_to = req.body.assigned_to || res.json({"error": "no update field(s) sent", "_id": id});;
-      let status_text = req.body.status_text || res.json({"error": "no update field(s) sent", "_id": id});;
-      let open = req.body.open || true;
+      
 
       let newDetails = Object.assign(req.body);
       newDetails['updated_on'] = new Date().toISOString();
