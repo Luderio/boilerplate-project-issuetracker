@@ -126,9 +126,9 @@ module.exports = function (app) {
       newDetails['updated_on'] = new Date().toISOString();
 
       if (Object.values(newDetails) === '') {
-        res.json({"error": "no update field(s) sent", "_id": id});
+        return res.json({"error": "no update field(s) sent", "_id": id});
       }else {
-        res.json({"error": "could not update", "_id": id});
+        returnres.json({"error": "could not update", "_id": id});
       }
       
       IssueLogs.findById({"_id": id}, (error, updatedDetails) => {
