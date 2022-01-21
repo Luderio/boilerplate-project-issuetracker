@@ -128,7 +128,7 @@ suite('Functional Tests', function() {
                     done();
                 });
             });
-        });*/
+        });
 
         //Test Suite for the PUT Route..
         suite('API PUT /api/issues/:project', function() {
@@ -208,6 +208,6 @@ suite('Functional Tests', function() {
                 });
             });
 
-        });
+        });*/
     });
 });
