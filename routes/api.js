@@ -122,11 +122,11 @@ module.exports = function (app) {
       }else if (!newDetails) {
         res.json({'error': 'no update field(s) sent', '_id': _id });
       }else if (newDetails) {
-        IssueLogs.findById({"_id": id}, (error, updatedDetails) => {
+        IssueLogs.findById(newDetails._id, (error, updatedDetails) => {
           if (error) return console.log(error);
   
           //not working properly
-          
+
           updatedDetails.issue_title = newDetails.issue_title;
           updatedDetails.issue_text = newDetails.issue_text;
           updatedDetails.created_by = newDetails.created_by;
@@ -146,7 +146,7 @@ module.exports = function (app) {
         });
 
       }else {
-        res.json({"error": "could not update", "_id": id});
+        res.json({"error": "could not update", "_id": newDetails._id});
       }
 
       
