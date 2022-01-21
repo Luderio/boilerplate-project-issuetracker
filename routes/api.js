@@ -129,7 +129,7 @@ module.exports = function (app) {
         && !newDetails.status_text
         && !newDetails.open
       ) {
-        res.json({'error': 'no update field(s) sent', '_id': _id });
+        res.json({'error': 'no update field(s) sent', '_id': newDetails._id });
       }else if 
       (
         newDetails._id 
