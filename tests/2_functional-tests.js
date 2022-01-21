@@ -152,7 +152,20 @@ suite('Functional Tests', function() {
 
             //Test 8: Update multiple fields on an issue: PUT request to /api/issues/{project}
             test('Update multiple fields on an issue', function(done) {
-
+                chai.request(server)
+                .put('/api/issues/apitest')
+                .send({
+                    "_id": '61ea47cf9c5c2604166c6ae4',
+                    "issue_title": 'Test Issue',
+                    "issue_text": 'Functional Testing',
+                    "created_by": 'Luderio Sanchez'
+                })
+                .end(function(error, response) {
+                    assert.isObject(response.body);
+                    assert.property(response.body, 'result');
+                    assert.property(response.body, '_id');
+                    done();
+                });
             });
 
             //Test 9: Update an issue with missing _id: PUT request to /api/issues/{project}
