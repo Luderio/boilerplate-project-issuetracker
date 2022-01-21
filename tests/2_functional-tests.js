@@ -12,7 +12,7 @@ let id2 = '';
 suite('Functional Tests', function() {
     suite('API Route Tests', function() {
         //Test Suite for the POST Route
-        /*suite('API POST /api/issues/:project', function() {
+        suite('API POST /api/issues/:project', function() {
             
             //Test 1: Create an issue with every field: POST request to /api/issues/{project}
             test('Create an issue with every field', function(done) {
@@ -157,7 +157,11 @@ suite('Functional Tests', function() {
                     "_id": '61ea47cf9c5c2604166c6ae4',
                     "issue_title": 'Test Issue',
                     "issue_text": 'Functional Testing',
-                    "created_by": 'Luderio Sanchez'
+                    "created_by": 'Luderio Sanchez',
+                    "assigned_to": 'Ian Rusiana',
+                    "status_text": 'Pending',
+                    "open": true,
+                    "updated_on": new Date().toISOString()
                 })
                 .end(function(error, response) {
                     assert.isObject(response.body);
@@ -207,7 +211,7 @@ suite('Functional Tests', function() {
                     done();
                 });
             });
-        });*/
+        });
 
         //Test Suite for the DELETE Route
         suite('API DELETE /api/issues/:project', function() {
