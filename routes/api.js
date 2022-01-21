@@ -118,7 +118,7 @@ module.exports = function (app) {
             let searchKeysItems = searchKeys.map(keys => {
               let searchValuesItems = searchValues.map(values => {
                 if (logs[keys].includes(values)) {
-                  console.log("value is present")
+                  return logs;
                 }
               });
               return searchValuesItems;
