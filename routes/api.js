@@ -121,7 +121,7 @@ module.exports = function (app) {
         res.json({error: 'missing _id'});
       }else if 
       (
-        newDetails._id 
+        !newDetails._id 
         && !newDetails.issue_title 
         && !newDetails.issue_text 
         && !newDetails.created_by 
@@ -129,7 +129,7 @@ module.exports = function (app) {
         && !newDetails.status_text
         && !newDetails.open
       ) {
-        res.json({'error': 'no update field(s) sent', '_id': newDetails._id });
+        res.json({'error': 'no update field(s) sent', '_id': newDetails._id});
       }else if 
       (
         newDetails._id 
@@ -156,7 +156,7 @@ module.exports = function (app) {
           (error, updatedRecord) => {
             if (error) return console.log(error);
             res.json({
-              "result": 'successfully updated', "_id": updatedRecord._id});
+              "result": 'successfully updated', "_id": newDetails._id});
           }
         );
 
