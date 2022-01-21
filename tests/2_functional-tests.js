@@ -123,7 +123,7 @@ suite('Functional Tests', function() {
                     response.body.forEach((issueResult) => {
                         assert.equal(issueResult.issue_text, 'Functional tests - Every field filled in');
                         assert.equal(issueResult.assigned_to, 'Ian Rusiana');
-                        
+
                     });
                     done();
                 });
@@ -144,8 +144,8 @@ suite('Functional Tests', function() {
                 .end(function(error, response) {
                     assert.equal(response.status, 200);
                     assert.isObject(response.body);
-                    assert.property(response.body[0], 'result');
-                    assert.property(response.body[0], '_id');
+                    assert.property(response.body, 'result');
+                    assert.property(response.body, '_id');
                     done();
                 });
             });
