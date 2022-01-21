@@ -114,9 +114,6 @@ module.exports = function (app) {
     .put(function (req, res){
       let project = req.params.project;
       
-      let id = req.body._id || res.json({"error": "missing _id"});
-      
-
       let newDetails = Object.assign(req.body);
       newDetails['updated_on'] = new Date().toISOString();
 
