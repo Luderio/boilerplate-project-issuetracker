@@ -115,12 +115,6 @@ module.exports = function (app) {
       let project = req.params.project;
       
       let id = req.body._id || res.json({"error": "required field(s) missing"});
-      let issue_title = req.body.issue_title || '';
-      let issue_text = req.body.issue_text || '';
-      let created_by = req.body.created_by || '';
-      let assigned_to = req.body.assigned_to || '';
-      let status_text = req.body.status_text || '';
-      let open = req.body.open || true;
 
       let newDetails = Object.assign(req.body);
       newDetails['updated_on'] = new Date().toISOString();
