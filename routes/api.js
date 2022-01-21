@@ -119,7 +119,7 @@ module.exports = function (app) {
               let logSearch = logResult.map(logs => {
                 for (keys in logs) {
                   if (logs[keys] == values) {
-                    return logs[keys] == values;
+                    console.log(logs[keys] == values);
                   }
                 }
               });
